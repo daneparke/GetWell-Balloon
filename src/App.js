@@ -1,28 +1,67 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Balloon from './component/Balloon';
+import Confetti from './component/Confetti';
+import Image from './component/Image';
+import audio from './component/baloon-sound.wav'
+
+
+
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      switcher: true,
+    }
+  }
+  growBalloon = () => {
+    if (this.state.switcher === true) {
+      this.setState({
+        switcher: false
+      })
+    } else {
+      this.setState({
+        switcher: true
+      })
+    }
+  }
+
+  // balloon.addEventListener('click', play)
+  grow = () => {
+    var balloon = document.querySelector('.grow')
+    var audio = document.getElementById("audio");
+    audio.play();
+    balloon.setAttribute('class', 'bigger')
+    setTimeout(function () {
+      balloon.style.display = 'none'
+      // var confeti = querySelector('.confeti')
+      // var kitty = querySelector('.kitty')
+      var show = document.querySelector('.hidden')
+      show.classList.remove('hidden')
+      var header = document.querySelector('header')
+      header.innerHTML = "Don't Die Kate"
+      var song = document.getElementById('song')
+      song.play();
+
+
+    }, 5200)
+
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <body >
+        <header growBalloon={this.state.growBalloon}>Click Balloon</header>
+        <div className='container'>
+          <Balloon growBalloon={this.state.growBalloon} grow={this.grow} />
+          <Confetti growBalloon={this.state.growBalloon} />
+        </div>
+        <audio id="audio" src={audio}></audio>
+      </body>
+
     );
   }
 }
 
 export default App;
+
