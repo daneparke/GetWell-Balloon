@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import Balloon from './component/Balloon';
 import Confetti from './component/Confetti';
-import Image from './component/Image';
 import audio from './component/baloon-sound.wav'
-
-
-
 import './App.css';
 
 class App extends Component {
@@ -27,7 +23,6 @@ class App extends Component {
     }
   }
 
-  // balloon.addEventListener('click', play)
   grow = () => {
     var balloon = document.querySelector('.grow')
     var audio = document.getElementById("audio");
@@ -35,16 +30,12 @@ class App extends Component {
     balloon.setAttribute('class', 'bigger')
     setTimeout(function () {
       balloon.style.display = 'none'
-      // var confeti = querySelector('.confeti')
-      // var kitty = querySelector('.kitty')
       var show = document.querySelector('.hidden')
       show.classList.remove('hidden')
       var header = document.querySelector('header')
       header.innerHTML = "Don't Die Kate"
       var song = document.getElementById('song')
       song.play();
-
-
     }, 5200)
 
   }
@@ -58,7 +49,6 @@ class App extends Component {
         </div>
         <audio id="audio" src={audio}></audio>
       </body>
-
     );
   }
 }

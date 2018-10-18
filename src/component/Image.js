@@ -2,10 +2,7 @@ import React from 'react'
 import meerkat from './meerkat.png'
 import cat from './catdance.gif'
 
-
 const Image = (props) => {
-
-
     return (
         <>
             <div classname='row'>
